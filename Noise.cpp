@@ -117,6 +117,8 @@ float Noise::SecondPNoise(float x, float z) {
     //(勾配関数内で内積を取っているので，ベクトルの向きによっては負の値が出る．範囲は-1.0f~1.0f).
     //(なので，正の値にするために1.0fを足して2.0fで割っている).
     return (Lerp(Lerp(a00, a10, xf), Lerp(a01, a11, xf), zf) + 1.0f) / 2.0f;
+
+    //これで返された値をｙに入れることにする
 }
 
 float Noise::SampleOctavePerlinNoise(float x, float y) {
