@@ -6,7 +6,7 @@
 #include"DebugCamera.h"
 #include "Player.h"
 
-
+class WindowsAPP;
 class DirectXBase;
 
 class GamePlay : public SceneBase {
@@ -66,6 +66,7 @@ private:
 	const float ROT_UINT = 0.1f;
 	float angleX = 0, angleY = 0, angleZ = 0;
 	float rotX = 0.0f, rotY = 0.0f, rotZ = 0.0f;
+	float scaleY = 1.0f / (float)WindowsApp::window_height;
 
 };
 

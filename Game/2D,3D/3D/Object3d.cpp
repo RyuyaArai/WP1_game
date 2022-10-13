@@ -130,6 +130,8 @@ bool Object3d::InitializeGraphicsPipeline()
 		OutputDebugStringA(errstr.c_str());
 		exit(1);
 	}
+	//D3D12_GRAPHICS_PIPELINE_STATE_DESC gpipeline{};
+	//gpipeline = CreGraPl::Gpipeline(vsBlob, psBlob);
 
 	// 頂点レイアウト
 	D3D12_INPUT_ELEMENT_DESC inputLayout[] = {

@@ -141,6 +141,42 @@ void GamePlay::VariableInitialize() {
 }
 
 void GamePlay::CameraUpdate() {
+	
+	Input* input = Input::GetInstance();
+
+	// マウスの入力を取得
+	Input::MouseMove mouseMove = input->GetMouseMove();
+	float dy = mouseMove.lX * scaleY;
+	angleY = -dy * XM_PI;
+	XMFLOAT3 oldCamera = camera->GetTarget();
+	XMFLOAT3 oldplayerPos = player->GetPosition();
+	XMFLOAT3 oldCameraEye = camera->GetEye();
+
+	if (input->PushKey(DIK_D)) {
+		XMVECTOR move = { 1.0f, 0, 0, 0 };
+		move = XMVector3Transform(move, matRot);
+		camera->MoveVector(move);
+	}
+	if (input->PushKey(DIK_A)) {
+		XMVECTOR move = { -1.0f, 0, 0, 0 };
+		move = XMVector3Transform(move, matRot);
+		camera->MoveVector(move);
+	}
+	if (input->PushKey(DIK_W)) {
+		XMVECTOR move = { 0, 0, 1.0f, 0 };
+		move = XMVector3Transform(move, matRot);
+		camera->MoveVector(move);
+	}
+	if (input->PushKey(DIK_S)) {
+		XMVECTOR move = { 0, 0, -1.0f, 0 };
+		move = XMVector3Transform(move, matRot);
+		camera->MoveVector(move);
+	}
+
+	XMMATRIX matRotNew = XMMatrixIdentity();
+	matRotNew *= XMMatrixRotationY(-angleY);
+	// 累積の回転行列を合成
+	matRot = matRotNew * matRot;
 
 	XMFLOAT3 chrpos = player->GetPosition();
 	XMVECTOR vTargetEye = { 0.0f,40.0f,60.0f,1.0f };

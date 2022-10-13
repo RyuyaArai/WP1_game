@@ -27,6 +27,8 @@ public:
 	void Update();
 
 	void Draw();
+
+	void PlayerCameraUpdate(Camera* camera);
 public:
 	static void SetCamera(Camera* camera) {
 		Object3d::SetCamera(camera);
