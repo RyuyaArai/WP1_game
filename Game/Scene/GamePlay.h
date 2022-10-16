@@ -66,7 +66,7 @@ private:
 	const float ROT_UINT = 0.1f;
 	float angleX = 0, angleY = 0, angleZ = 0;
 	float rotX = 0.0f, rotY = 0.0f, rotZ = 0.0f;
-	float scaleY = 1.0f / (float)WindowsApp::window_height;
+	float scaleY = 1.0f / (float)WindowsAPP::window_height;
 
 };
 
