@@ -5,7 +5,7 @@
 void GameSceneBase::Initialize() {
 
 	Framework::Initialize();
-	SceneBase* scene = new GamePlay(sceneManager_);
+	SceneBase* scene = new Title(sceneManager_);
 	sceneManager_->SetNextScene(scene);
 }
 

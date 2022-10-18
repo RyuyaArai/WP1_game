@@ -108,7 +108,7 @@ void GamePlay::Create3D_object() {
 
 void GamePlay::Create2D_object() {
 
-	spriteE = Sprite::Create(0, { 0,0, }, false, false);
+	spriteE = Sprite::Create(0, { 0,0 }, false, false);
 
 	//for (int i = 0; i < 20; i++) {
 	//	int texNum = rand() % 2;

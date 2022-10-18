@@ -13,6 +13,7 @@ void Title::Initialize() {
 	SpriteBase* spriteCommon = SpriteBase::GetInstance();
 	spriteCommon->LoadTexture(0, L"Resources/Title.png");
 	title = Sprite::Create(0, { 0,0 }, false, false);
+
 	//for (int i = 0; i < 20; i++)
 	//{
 	//	int texNum = rand() % 2;
@@ -36,6 +37,7 @@ void Title::Initialize() {
 
 void Title::Finalize() {
 	delete sprite;
+	delete title;
 }
 
 void Title::Update() {
@@ -45,18 +47,18 @@ void Title::Update() {
 		// 画面クリアカラーの数値を書き換える
 		//clearColor[1] = 1.0f;
 	}
-	if (input->TriggerKey(DIK_RETURN)) {
+	if (input->TriggerKey(DIK_SPACE)) {
 		SceneBase* scene = new GamePlay(sceneManager_);
 		sceneManager_->SetNextScene(scene);
 	}
-	sprite->Update();
+	title->Update();
 }
 
 void Title::Draw() {
 	SpriteBase::GetInstance()->PreDraw();
 	title->Draw();
-	for (auto& sprite : sprites)
+	/*for (auto& sprite : sprites)
 	{
 		sprite->Draw();
-	}
+	}*/
 }
