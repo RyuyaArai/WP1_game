@@ -4,7 +4,11 @@
 
 void Map::CreateMap() {
 	for (int i = 0; i < BlockNum; i++) {
-		blockobj[i] = ObjModel::LoadFromOBJ("block0");
+		blockobj[i] = ObjModel::LoadFromOBJ("tempBlock");
+		block[i] = Object3d::Create();
+		block[i]->SetModel(blockobj[i]);
+		block[i]->SetScale({ 50,50,50 });
+		block[i]->Update();
 	}
 
 	srand((unsigned)time(NULL));
@@ -14,20 +18,22 @@ void Map::CreateMap() {
 	noise->SettingHash(Seed);
 
 	for (int i = 0; i < MapX; i++) {
-		for (int j = 0; j < MapY; j++) {
-			SetPosition({ (float)0 + 32 * i,(float)0,(float)0 + 32 * i }, i, j);
-			float MapX, MapZ;
-			MapX = GetPointPosition(i, j).x;
-			MapZ = GetPointPosition(i, j).z;
-			SetPosition({ MapX,noise->SecondPNoise(MapX,MapZ),MapZ }, i, j);
+		for (int j = 0; j < MapZ; j++) {
+			//SetPosition({ 0,0,0 }, i, j);
+			map[i][j] = { (float)1.1f + 32.01f * i, (float)0, (float)1.1f + 32.01f * j };
+			float Mapx, Mapz;
+			Mapx = GetPointPosition(i, j).x;
+			Mapz = GetPointPosition(i, j).z;
+			float yRand = rand() % 20 + 10;
+			map[i][j] = { Mapx,noise->SecondPNoise(Mapx,Mapz)*yRand,Mapz };
 		}
 	}
-
+	int k = 0;
 	for (int i = 0; i < MapX; i++) {
-		for (int j = 0; j < MapY; j++) {
-			for (int k = 0; k < BlockNum; k++) {
-				block[k]->SetPosition(map->map[i][j]);
-			}
+		for (int j = 0; j < MapZ; j++) {
+			block[k]->SetPosition(map[i][j]);
+			isDraw[k] = true;
+			k++;
 		}
 	}
 
@@ -36,11 +42,18 @@ void Map::CreateMap() {
 void Map::Draw()
 {
 	for (int i = 0; i < BlockNum; i++) {
-		if (map->isDraw[i] == true) {
+		if (isDraw[i] == true) {
 			block[i]->Draw();
 		}
 	}
 
+}
+
+void Map::Update()
+{
+	for (int i = 0; i < BlockNum; i++) {
+		block[i]->Update();
+	}
 }
 
 

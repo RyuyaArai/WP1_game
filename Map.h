@@ -16,32 +16,30 @@ private:
 	using XMMATRIX = DirectX::XMMATRIX;
 
 private:
-	static const int MapX = 20, MapY = 20;
-	static const int BlockNum = MapX * MapY;
+	static const int MapX = 20, MapZ = 20;
+	static const int BlockNum = MapX * MapZ;
 
-	struct MapOption
-	{
-		XMFLOAT3 map[20][20] = {};
-		bool isDraw[BlockNum] = { false };
-	};
+
 
 public:
 	void CreateMap();
 
-	void SetPosition(XMFLOAT3 pos,int i,int j) { this->map->map[i][j] = pos; }
+	void SetPosition(XMFLOAT3 pos,int i,int j) { this->map[i][j] = pos; }
 
-	XMFLOAT3 GetPointPosition(int i, int j) { return map->map[i][j]; }
+	XMFLOAT3 GetPointPosition(int i, int j) { return map[i][j]; }
 
 	void Draw();
 
+	void Update();
+
 public:
-	MapOption* map = nullptr;
 
 	Object3d* block[BlockNum] = { nullptr };
 	ObjModel* blockobj[BlockNum] = { nullptr };
 	Noise* noise = nullptr;
 
-
+	XMFLOAT3 map[MapX][MapZ] = {};
+	bool isDraw[BlockNum] = { false };
 
 };
 

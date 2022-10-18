@@ -52,6 +52,7 @@ private:
 	Player* player = nullptr;
 
 	Sprite* sprite = nullptr;
+	Sprite* spriteE = nullptr;
 
 	ObjModel* modelblock = nullptr;
 	

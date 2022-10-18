@@ -30,7 +30,7 @@ void GamePlay::Finalize() {
 	{
 		delete sprite;
 	}
-	//delete sprite;
+	delete spriteE;
 	delete modelblock;
 	delete objblock;
 	delete camera;
@@ -44,6 +44,11 @@ void GamePlay::Update() {
 
 	ClassUpdate();
 
+	if (input->TriggerKey(DIK_E)) {
+		SceneBase* scene = new GamePlay(sceneManager_);
+		sceneManager_->SetNextScene(scene);
+	}
+
 	//----------デバッグ用-----------------------------
 	if (input->TriggerKey(DIK_RETURN)) {
 		ChangeScene();
@@ -53,12 +58,13 @@ void GamePlay::Update() {
 
 void GamePlay::Draw() {
 	Object3d::PreDraw(DirectXBase::GetInstance()->GetCmdList());
-	objblock->Draw();
+	//objblock->Draw();
 	//fbxObject1->Draw(DirectXBase::GetInstance()->GetCmdList());
 	map->Draw();
 	Object3d::PostDraw();
 	player->Draw();
 	SpriteBase::GetInstance()->PreDraw();
+	spriteE->Draw();
 	for (auto& sprite : sprites)
 	{
 		sprite->Draw();
@@ -86,7 +92,10 @@ void GamePlay::Create3D_object() {
 	player->Initialize();
 
 	map = new Map();
+	bool mapOk = false;
+
 	map->CreateMap();
+
 
 	//fbxModel1 = FbxLoader::GetInstance()->LoadModelFromFile("boneTest");
 	//fbxObject1 = new FbxObject3d;
@@ -99,9 +108,7 @@ void GamePlay::Create3D_object() {
 
 void GamePlay::Create2D_object() {
 
-	//Sprite* sprite = Sprite::Create(0, { 0,0, }, false, false);
-	//sprites.push_back(sprite);
-	//sprite->SetPosition({ 500,300,0 });
+	spriteE = Sprite::Create(0, { 0,0, }, false, false);
 
 	//for (int i = 0; i < 20; i++) {
 	//	int texNum = rand() % 2;
@@ -124,8 +131,9 @@ void GamePlay::Create2D_object() {
 
 void GamePlay::SpriteLoadTex() {
 	SpriteBase* spriteCommon = SpriteBase::GetInstance();
-	spriteCommon->LoadTexture(0, L"Resources/texture.png");
+	spriteCommon->LoadTexture(0, L"Resources/EReCreate.png");
 	spriteCommon->LoadTexture(1, L"Resources/house.png");
+	//spriteCommon->LoadTexture(2, L"Resources/E_ReCreate.png");
 
 }
 
@@ -180,9 +188,10 @@ void GamePlay::CameraUpdate() {
 	//fTargetEye.y *= 17;
 	//fTargetEye.z *= 17;
 
-	camera->SetTarget({ chrpos.x,chrpos.y + 40.0f,chrpos.z - 60.0f });
+	camera->SetTarget({ chrpos.x,chrpos.y + 60.0f,chrpos.z - 60.0f });
 	camera->SetDistance(20.0f);
 	camera->SetEye({ chrpos.x,chrpos.y,chrpos.z });
+	camera->SetUp({ 0,20,0 });
 	camera->Update();
 }
 
@@ -195,6 +204,7 @@ void GamePlay::ChangeScene() {
 void GamePlay::ClassUpdate() {
 	player->Update();
 	objblock->Update();
+	map->Update();
 	//fbxObject1->Update();
 	for (auto& sprite : sprites)
 	{
