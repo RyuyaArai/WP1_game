@@ -19,5 +19,6 @@ public:
 private:
 	Sprite* sprite = nullptr;
 	std::vector<Sprite*> sprites;
+	Sprite* title = nullptr;
 };
 
