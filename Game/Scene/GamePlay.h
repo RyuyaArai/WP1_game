@@ -5,6 +5,7 @@
 #include"FbxObject3d.h"
 #include"DebugCamera.h"
 #include "Player.h"
+#include "Map.h"
 
 
 class DirectXBase;
@@ -45,6 +46,8 @@ private:
 	void CameraUpdate();
 
 private:
+
+	Map* map = nullptr;
 
 	Player* player = nullptr;
 

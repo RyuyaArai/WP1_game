@@ -55,6 +55,7 @@ void GamePlay::Draw() {
 	Object3d::PreDraw(DirectXBase::GetInstance()->GetCmdList());
 	objblock->Draw();
 	//fbxObject1->Draw(DirectXBase::GetInstance()->GetCmdList());
+	map->Draw();
 	Object3d::PostDraw();
 	player->Draw();
 	SpriteBase::GetInstance()->PreDraw();
@@ -83,6 +84,9 @@ void GamePlay::Create3D_object() {
 	objblock->Update();
 	player = new Player();
 	player->Initialize();
+
+	map = new Map();
+	map->CreateMap();
 
 	//fbxModel1 = FbxLoader::GetInstance()->LoadModelFromFile("boneTest");
 	//fbxObject1 = new FbxObject3d;
@@ -143,42 +147,42 @@ void GamePlay::VariableInitialize() {
 void GamePlay::CameraUpdate() {
 
 	XMFLOAT3 chrpos = player->GetPosition();
-	XMVECTOR vTargetEye = { 0.0f,40.0f,60.0f,1.0f };
-	XMVECTOR vUp = { 0.0f, 1.0f, 0.0f, 0.0f };
-	vTargetEye = XMVector3Transform(vTargetEye, matRot);
-	vUp = XMVector3Transform(vUp, matRot);
-	float length = 0;
-	XMFLOAT3 target1 = camera->GetTarget();
-	camera->SetEye(
-		{
-			target1.x + vTargetEye.m128_f32[0],
-			target1.y + vTargetEye.m128_f32[1],
-			target1.z + vTargetEye.m128_f32[2]
-		});
-	camera->SetUp({ vUp.m128_f32[0], vUp.m128_f32[1], vUp.m128_f32[2] });
-	// 注視点からずらした位置に視点座標を決定
-	XMFLOAT3 target2 = camera->GetTarget();
-	XMFLOAT3 eye = camera->GetEye();
+	//XMVECTOR vTargetEye = { 0.0f,40.0f,60.0f,1.0f };
+	//XMVECTOR vUp = { 0.0f, 1.0f, 0.0f, 0.0f };
+	//vTargetEye = XMVector3Transform(vTargetEye, matRot);
+	//vUp = XMVector3Transform(vUp, matRot);
+	//float length = 0;
+	//XMFLOAT3 target1 = camera->GetTarget();
+	//camera->SetEye(
+	//	{
+	//		target1.x + vTargetEye.m128_f32[0],
+	//		target1.y + vTargetEye.m128_f32[1],
+	//		target1.z + vTargetEye.m128_f32[2]
+	//	});
+	//camera->SetUp({ vUp.m128_f32[0], vUp.m128_f32[1], vUp.m128_f32[2] });
+	//// 注視点からずらした位置に視点座標を決定
+	//XMFLOAT3 target2 = camera->GetTarget();
+	//XMFLOAT3 eye = camera->GetEye();
 
-	XMFLOAT3 fTargetEye = { 0.0f, 0.0f, 0.0f };
+	//XMFLOAT3 fTargetEye = { 0.0f, 0.0f, 0.0f };
 
-	// 大きさ計算
-	length = sqrtf(pow(target2.x - eye.x, 2) + pow(target2.y - eye.y, 2) + pow(target2.z - eye.z, 2));
-	fTargetEye.x = eye.x - target2.x;
-	fTargetEye.y = eye.y - target2.y;
-	fTargetEye.z = eye.z - target2.z;
+	//// 大きさ計算
+	//length = sqrtf(pow(target2.x - eye.x, 2) + pow(target2.y - eye.y, 2) + pow(target2.z - eye.z, 2));
+	//fTargetEye.x = eye.x - target2.x;
+	//fTargetEye.y = eye.y - target2.y;
+	//fTargetEye.z = eye.z - target2.z;
 
-	fTargetEye.x /= length;
-	fTargetEye.y /= length;
-	fTargetEye.z /= length;
+	//fTargetEye.x /= length;
+	//fTargetEye.y /= length;
+	//fTargetEye.z /= length;
 
-	fTargetEye.x *= 17;
-	fTargetEye.y *= 17;
-	fTargetEye.z *= 17;
+	//fTargetEye.x *= 17;
+	//fTargetEye.y *= 17;
+	//fTargetEye.z *= 17;
 
-	//camera->SetTarget({ chrpos.x,chrpos.y + 40.0f,chrpos.z - 60.0f });
-	//camera->SetDistance(20.0f);
-	//camera->SetEye({ chrpos.x,chrpos.y,chrpos.z });
+	camera->SetTarget({ chrpos.x,chrpos.y + 40.0f,chrpos.z - 60.0f });
+	camera->SetDistance(20.0f);
+	camera->SetEye({ chrpos.x,chrpos.y,chrpos.z });
 	camera->Update();
 }
 

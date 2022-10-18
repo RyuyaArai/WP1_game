@@ -19,6 +19,7 @@ public:
 	float TwoDimensionalWavelet(float x, float y, float ax, float ay);
 	float ThreeDimensionalWavelet(float x, float y, float z, float ax, float ay, float az);
 
+
 	float Fade(float t);
 
 	float Lerp(float a, float b, float t);
@@ -28,6 +29,9 @@ public:
 	float SecondPNoise(float x, float z);
 
 	float SampleOctavePerlinNoise(float x, float y);
+
+public:
+	void SettingHash(unsigned int seed);
 
 private:
 	static const int SampleHashCodeMax;

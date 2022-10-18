@@ -173,6 +173,7 @@
     <ClCompile Include="Game\Scene\GameSceneBase.cpp" />
     <ClCompile Include="Game\Scene\Title.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Map.cpp" />
     <ClCompile Include="Noise.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="SNoise.cpp" />
@@ -284,6 +285,7 @@
     <ClInclude Include="Game\Scene\GamePlay.h" />
     <ClInclude Include="Game\Scene\GameSceneBase.h" />
     <ClInclude Include="Game\Scene\Title.h" />
+    <ClInclude Include="Map.h" />
     <ClInclude Include="Noise.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="SNoise.h" />

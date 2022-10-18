@@ -45,7 +45,7 @@ float Noise::ThreeDimensionalWavelet(float x, float y, float z, float ax, float 
 	return W;
 }
 
-void SettingHash(unsigned int seed)
+void Noise::SettingHash(unsigned int seed)
 {
     //—”ƒ‰ƒCƒuƒ‰ƒŠ‰Šú‰».
     srand(seed);
