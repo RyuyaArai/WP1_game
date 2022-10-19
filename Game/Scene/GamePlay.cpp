@@ -45,8 +45,7 @@ void GamePlay::Update() {
 	ClassUpdate();
 
 	if (input->TriggerKey(DIK_E)) {
-		SceneBase* scene = new GamePlay(sceneManager_);
-		sceneManager_->SetNextScene(scene);
+		map->CreateMap();
 	}
 
 	//----------デバッグ用-----------------------------
@@ -94,6 +93,7 @@ void GamePlay::Create3D_object() {
 	map = new Map();
 	bool mapOk = false;
 
+	map->CreateBlockAndSeed();
 	map->CreateMap();
 
 

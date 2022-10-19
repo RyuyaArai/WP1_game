@@ -16,13 +16,15 @@ private:
 	using XMMATRIX = DirectX::XMMATRIX;
 
 private:
-	static const int MapX = 20, MapZ = 20;
+	static const int MapX = 50, MapZ = 50;
 	static const int BlockNum = MapX * MapZ;
 
 
 
 public:
 	void CreateMap();
+
+	void CreateBlockAndSeed();
 
 	void SetPosition(XMFLOAT3 pos,int i,int j) { this->map[i][j] = pos; }
 
@@ -35,7 +37,9 @@ public:
 public:
 
 	Object3d* block[BlockNum] = { nullptr };
-	ObjModel* blockobj[BlockNum] = { nullptr };
+	//ObjModel* blockobj[BlockNum] = { nullptr };
+	ObjModel* blockobj = nullptr;
+
 	Noise* noise = nullptr;
 
 	XMFLOAT3 map[MapX][MapZ] = {};

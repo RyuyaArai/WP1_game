@@ -3,19 +3,7 @@
 #include <time.h>
 
 void Map::CreateMap() {
-	for (int i = 0; i < BlockNum; i++) {
-		blockobj[i] = ObjModel::LoadFromOBJ("tempBlock");
-		block[i] = Object3d::Create();
-		block[i]->SetModel(blockobj[i]);
-		block[i]->SetScale({ 50,50,50 });
-		block[i]->Update();
-	}
 
-	srand((unsigned)time(NULL));
-	float Seed = rand() % 20;
-	noise = new Noise();
-
-	noise->SettingHash(Seed);
 
 	for (int i = 0; i < MapX; i++) {
 		for (int j = 0; j < MapZ; j++) {
@@ -36,6 +24,24 @@ void Map::CreateMap() {
 			k++;
 		}
 	}
+
+}
+
+void Map::CreateBlockAndSeed() {
+
+	for (int i = 0; i < BlockNum; i++) {
+		blockobj = ObjModel::LoadFromOBJ("tempBlock");
+		block[i] = Object3d::Create();
+		block[i]->SetModel(blockobj);
+		block[i]->SetScale({ 50,50,50 });
+		block[i]->Update();
+	}
+
+	srand((unsigned)time(NULL));
+	float Seed = rand() % 20;
+	noise = new Noise();
+
+	noise->SettingHash(Seed);
 
 }
 
