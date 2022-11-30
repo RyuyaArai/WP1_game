@@ -16,7 +16,7 @@ private:
 	using XMMATRIX = DirectX::XMMATRIX;
 
 private:
-	static const int MapX = 50, MapZ = 50;
+	static const int MapX = 20, MapZ = 20;
 	static const int BlockNum = MapX * MapZ;
 
 

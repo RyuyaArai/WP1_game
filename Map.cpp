@@ -8,7 +8,7 @@ void Map::CreateMap() {
 	for (int i = 0; i < MapX; i++) {
 		for (int j = 0; j < MapZ; j++) {
 			//SetPosition({ 0,0,0 }, i, j);
-			map[i][j] = { (float)1.1f + 32.01f * i, (float)0, (float)1.1f + 32.01f * j };
+			map[i][j] = { (float)1.1f + 5.01f * i, (float)0, (float)1.1f + 5.01f * j };
 			float Mapx, Mapz;
 			Mapx = GetPointPosition(i, j).x;
 			Mapz = GetPointPosition(i, j).z;
@@ -30,7 +30,7 @@ void Map::CreateMap() {
 void Map::CreateBlockAndSeed() {
 
 	for (int i = 0; i < BlockNum; i++) {
-		blockobj = ObjModel::LoadFromOBJ("tempBlock");
+		blockobj = ObjModel::LoadFromOBJ("block2");
 		block[i] = Object3d::Create();
 		block[i]->SetModel(blockobj);
 		block[i]->SetScale({ 50,50,50 });

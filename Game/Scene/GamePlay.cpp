@@ -188,10 +188,10 @@ void GamePlay::CameraUpdate() {
 	//fTargetEye.y *= 17;
 	//fTargetEye.z *= 17;
 
-	camera->SetTarget({ chrpos.x,chrpos.y + 60.0f,chrpos.z - 60.0f });
+	camera->SetTarget({ chrpos.x,chrpos.y + 50.0f,chrpos.z - 30.0f });
 	camera->SetDistance(20.0f);
 	camera->SetEye({ chrpos.x,chrpos.y,chrpos.z });
-	camera->SetUp({ 0,20,0 });
+	camera->SetUp({ 0,120,100 });
 	camera->Update();
 }
 
